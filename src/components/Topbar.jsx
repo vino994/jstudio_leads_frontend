@@ -1,17 +1,8 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { BellIcon, Bars3Icon } from "@heroicons/react/24/outline";
-import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 function Topbar({ setIsOpen, darkMode }) {
-  const { logout } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");   // 🔥 go back to landing
-  };
 
   return (
     <div
@@ -41,11 +32,11 @@ function Topbar({ setIsOpen, darkMode }) {
           </div>
         )}
 
+        {/* Optional button instead of logout */}
         <button
-          onClick={handleLogout}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
         >
-          Logout
+          Account
         </button>
       </div>
     </div>

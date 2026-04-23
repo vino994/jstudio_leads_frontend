@@ -1,41 +1,21 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useContext } from "react";
+import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { AuthContext } from "./context/AuthContext";
 
-import Landing from "./pages/Landing";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import Upgrade from "./pages/Upgrade";
+// import Services if you still want it
 import Services from "./pages/Services";
 
 function App() {
-  const { token } = useContext(AuthContext);
-
   return (
     <>
       <Routes>
 
-        {/* 🌍 PUBLIC ROUTES */}
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* ✅ MAIN ROUTE → Dashboard */}
+        <Route path="/" element={<Dashboard />} />
+
+        {/* Optional */}
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/services" element={<Services />} />
-
-        {/* 🔒 PROTECTED ROUTES */}
-        <Route
-          path="/dashboard"
-          element={token ? <Dashboard /> : <Navigate to="/login" />}
-        />
-
-        <Route
-          path="/upgrade"
-          element={token ? <Upgrade /> : <Navigate to="/login" />}
-        />
-
-        {/* ❌ UNKNOWN ROUTES */}
-        <Route path="*" element={<Navigate to="/" />} />
 
       </Routes>
 
